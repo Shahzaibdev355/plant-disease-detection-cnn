@@ -56,6 +56,15 @@ def predict_image(image):
 # -----------------------------
 # API Route
 # -----------------------------
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "status": "success",
+        "message": "Plant Disease API is running 🚀"
+    })
+
+
+
 @app.route("/predict", methods=["POST"])
 def predict():
     if "image" not in request.files:
@@ -113,5 +122,10 @@ def generate_description(disease_name):
 # -----------------------------
 # Run Server
 # -----------------------------
+# if __name__ == "__main__":
+#     app.run(debug=True, port=4000)
+
+# for spaces
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 7860))
+    app.run(host="0.0.0.0", port=port)
